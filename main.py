@@ -21,9 +21,9 @@ FormatRule = namedtuple('FormatRule', ['regex', 'format', 'rank'])
 FormatRule.__new__.__defaults__ = (0,)  # last argument is optional
 
 DEFAULT_RULES = [
-    FormatRule(r'\d{8}[-_]\d{6}',        '%Y%m%d_%H%M%S',      10),  # 20131117_145104
-    FormatRule(r'\d{4}([-_]\d{2}){5}',   '%Y-%m-%d-%H-%M-%S',  20),  # 2013-11-17-14-51-04
-    FormatRule(r'(\d+[- ]){3}(\d+.){3}', '%Y-%m-%d %H.%M.%S.', 30),  # 2013-11-17 14.51.04.
+    FormatRule(r'\d{8}[-_]\d{6}',      '%Y%m%d_%H%M%S',      10),  # 20131117_145104
+    FormatRule(r'\d{4}([-_]\d{2}){5}', '%Y-%m-%d-%H-%M-%S',  20),  # 2013-11-17-14-51-04
+    FormatRule(r'(\d+[- .]){6}',       '%Y-%m-%d %H.%M.%S.', 30),  # 2013-11-17 14.51.04.
 ]
 
 def eprint(obj): print(obj, file=sys.stderr)
@@ -38,8 +38,9 @@ def get_pictures(root_directory):
 
     jpg, png, and gif files are considered.
     '''
+    formats = ['jpeg', 'gif', 'png']
     for basepath, folders, files in os.walk(root_directory):
-        yield from ((basepath, file) for file in files if file.split('.')[-1] in ['jpeg', 'gif', 'png'])
+        yield from ((basepath, f) for f in files if imghdr.what(os.path.join(basepath, f)) in formats)
         for folder in folders:
             yield from get_pictures(folder)
 
