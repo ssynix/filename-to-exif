@@ -1,0 +1,14 @@
+# Hidden OS stuff
+.*
+!.gitignore
+
+# venv, compiled
+lib
+bin
+include
+.pyc
+pyvenv.cfg
+pip-selfcheck.json
+
+# Test data
+*.txt
