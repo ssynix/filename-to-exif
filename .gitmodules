@@ -1,0 +1,3 @@
+[submodule "DateSense"]
+	path = DateSense
+	url = https://github.com/humangeo/DateSense/
