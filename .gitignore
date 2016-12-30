@@ -3,6 +3,7 @@
 !.gitignore
 
 # venv, compiled
+tmp
 lib
 bin
 include
@@ -11,4 +12,5 @@ pyvenv.cfg
 pip-selfcheck.json
 
 # Test data
-*.txt
+*.log
+Pictures

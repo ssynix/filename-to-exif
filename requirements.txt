@@ -1,0 +1,4 @@
+future==0.16.0
+PyExifTool==0.1
+python-dateutil==2.6.0
+six==1.10.0
